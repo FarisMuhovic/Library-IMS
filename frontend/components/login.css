@@ -1,0 +1,134 @@
+.login-page {
+  background-color: var(--bg-secondary);
+  min-height: 100vh;
+  display: grid;
+}
+.login-page main,
+.login-area,
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login-area {
+  background-color: var(--bg-primary);
+  padding: 2rem 1.5rem;
+  gap: 1rem;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 5px 5px rgba(172, 172, 172, 0.068);
+}
+.login-text {
+  text-align: center;
+  padding: 2rem;
+}
+.login-text img {
+  margin-bottom: 1rem;
+}
+.login-text > h2 {
+  color: var(--font-accent);
+  padding: 0.25rem 0;
+  font-size: 1.85rem;
+  font-weight: 500;
+}
+.login-text > p {
+  color: var(--font-color);
+  padding: 0.25rem 0;
+  font-size: 1.1rem;
+}
+.login-form {
+  width: 100%;
+  gap: 1.5rem;
+}
+.login-form > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+.login-form .text-input-label {
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+.login-form .text-input-label:hover {
+  border: 1px solid var(--btn-hover);
+}
+.login-form .text-input-label > input {
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 3.25rem;
+  background-color: var(--bg-secondary);
+  color: #6e7079;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+.login-form .text-input-label > i {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(1rem, -50%);
+  color: var(--font-color);
+}
+.login-form .text-input-label > button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-0.5rem, -50%);
+  background-color: transparent;
+  padding: 0.5rem;
+  color: var(--font-accent);
+  border: none;
+  cursor: pointer;
+}
+.login-form .radio-input-label {
+  gap: 0.5rem;
+  padding: 0 1.1rem;
+  color: var(--font-color);
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+  align-self: flex-end;
+}
+.login-form .radio-input-label > input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.login-form > button {
+  background-color: var(--primary-color);
+  color: var(--bg-secondary);
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  width: 100%;
+  max-width: 150px;
+  height: 50px;
+  cursor: pointer;
+}
+.login-form > button:hover {
+  background-color: var(--btn-hover);
+}
+
+/*  Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .login-area {
+    padding: 2rem 0.75rem;
+  }
+  .login-text {
+    padding: 1rem 0;
+  }
+  .login-area {
+    height: 100%;
+  }
+  .login-form > button {
+    max-width: 100%;
+  }
+}

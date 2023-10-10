@@ -50,6 +50,7 @@
   width: 100%;
   position: relative;
 }
+
 .login-form .text-input-label {
   border: 1px solid transparent;
   border-radius: 0.5rem;
@@ -67,6 +68,9 @@
   border: none;
   border-radius: 0.5rem;
   font-size: 0.9rem;
+}
+.login-form .text-input-label > input:focus {
+  color: var(--font-accent);
 }
 .login-form .text-input-label > i {
   position: absolute;

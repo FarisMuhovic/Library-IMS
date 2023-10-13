@@ -3,6 +3,10 @@ import {useNavigate} from "react-router-dom";
 import "./login.css";
 const Login = () => {
   let navigate = useNavigate();
+  const demoAccount = {
+    email: "john_doe@gmail.com",
+    password: "admin",
+  };
   const [visibility, setVisibility] = useState(false);
   const [labelStatus, setlabelStatus] = useState("");
   const changePasswordVisibility = () => {
@@ -55,6 +59,14 @@ const Login = () => {
     <div className="login-page">
       <main>
         <section className="login-area">
+          <button
+            className="demo-account-btn"
+            onClick={() => {
+              setFormData(demoAccount);
+            }}
+          >
+            Get Demo Account
+          </button>
           <section className="login-text">
             <img src="logo.png" alt="Company Logo" width={50} height={40} />
             <h2>Welcome back!</h2>

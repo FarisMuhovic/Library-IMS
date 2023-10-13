@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import "./login.css";
 const Login = () => {
+  let navigate = useNavigate();
   const [visibility, setVisibility] = useState(false);
+  const [labelStatus, setlabelStatus] = useState("");
   const changePasswordVisibility = () => {
     setVisibility(prev => !prev);
   };
@@ -11,6 +14,7 @@ const Login = () => {
     rememberUser: false,
   });
   const handleInputData = e => {
+    setlabelStatus("");
     setFormData(prevdata => {
       const newFormData = {...prevdata};
       if (e.target.name == "rememberUser") {
@@ -21,20 +25,41 @@ const Login = () => {
       return newFormData;
     });
   };
-  const handleSubmit = e => {
+  const [loaderBtn, setloaderBtn] = useState(false);
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form Data is being submitted, Your data:", formData);
-    // here goes the errors and stuff
-  };
+    setloaderBtn(true);
+    await fetch("http://localhost:5000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(formData),
+    })
+      .then(res => {
+        setloaderBtn(false);
+        if (res.status == 200) {
+          setlabelStatus("success");
+          navigate("/dashboard");
+        } else {
+          console.log("wrong info");
+          setlabelStatus("error");
+        }
+      })
+      .catch(err => {
+        console.log(err); // error
+      });
+  }
   return (
     <div className="login-page">
       <main>
         <section className="login-area">
-          <sectio className="login-text">
+          <section className="login-text">
             <img src="logo.png" alt="Company Logo" width={50} height={40} />
             <h2>Welcome back!</h2>
             <p>Log in to the system.</p>
-          </sectio>
+          </section>
           <form className="login-form" onSubmit={handleSubmit}>
             <label className="text-input-label">
               <i className="material-symbols-outlined">mail</i>
@@ -45,6 +70,7 @@ const Login = () => {
                 required
                 onChange={handleInputData}
                 value={formData.email}
+                className={labelStatus != "" ? labelStatus : ""}
               />
             </label>
             <label className="text-input-label">
@@ -56,6 +82,7 @@ const Login = () => {
                 required
                 onChange={handleInputData}
                 value={formData.password}
+                className={labelStatus != "" ? labelStatus : ""}
               />
               <button type="button" onClick={changePasswordVisibility}>
                 <i className="material-symbols-outlined">
@@ -72,7 +99,9 @@ const Login = () => {
                 checked={formData.rememberUser}
               />
             </label>
-            <button type="submit">Login</button>
+            <button type="submit">
+              {loaderBtn && <span class="loader"></span>}Login
+            </button>
           </form>
         </section>
       </main>

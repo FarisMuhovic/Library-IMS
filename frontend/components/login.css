@@ -55,9 +55,6 @@
   border: 1px solid transparent;
   border-radius: 0.5rem;
 }
-.login-form .text-input-label:hover {
-  border: 1px solid var(--btn-hover);
-}
 .login-form .text-input-label > input {
   height: 100%;
   width: 100%;
@@ -68,6 +65,12 @@
   border: none;
   border-radius: 0.5rem;
   font-size: 0.9rem;
+}
+.login-form .text-input-label > input.error {
+  outline: 1px solid var(--error);
+}
+.login-form .text-input-label > input.success {
+  outline: 1px solid var(--success);
 }
 .login-form .text-input-label > input:focus {
   color: var(--font-accent);
@@ -116,11 +119,34 @@
   max-width: 150px;
   height: 50px;
   cursor: pointer;
+  position: relative;
 }
 .login-form > button:hover {
   background-color: var(--btn-hover);
 }
+.loader {
+  width: 25px;
+  height: 25px;
+  border: 5px solid #fff;
+  border-bottom-color: black;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  translate: 15px -50%;
+}
 
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /*  Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
   .login-area {

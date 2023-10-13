@@ -15,9 +15,9 @@ html {
   --bg-secondary: #f6f6fb;
   --font-color: #8b8d97;
   --font-accent: #000000;
-  --error: #f04438;
-  --warning: #12b76a;
-  --success: #f79009;
+  --error: #e63d31;
+  --success: #12b76a;
+  --warning: #f79009;
   --btn-hover: #1052af;
 }
 

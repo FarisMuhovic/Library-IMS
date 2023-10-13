@@ -10,17 +10,23 @@ html {
 }
 :root {
   /* color pallete */
-  --primary-color: #1570ef;
+  --primary-color: #5570f1;
   --bg-primary: #ffffff;
-  --bg-secondary: #f6f6fb;
-  --font-color: #8b8d97;
+  --bg-secondary: #eff2ff;
+  --font-color: #53545c;
   --font-accent: #000000;
   --error: #e63d31;
   --success: #12b76a;
   --warning: #f79009;
-  --btn-hover: #1052af;
+  --btn-hover: #4154b1;
 }
 
+body,
+.app {
+  background-color: black;
+  color: white;
+  display: flex;
+}
 /*  Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {
 }

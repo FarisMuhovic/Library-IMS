@@ -1,0 +1,117 @@
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 1.5rem 2.5rem;
+  gap: 1rem;
+  background-color: var(--bg-secondary);
+  width: fit-content;
+  min-width: 300px;
+  color: var(--font-color);
+}
+.side-bar ul {
+  list-style: none;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  color: var(--font-accent);
+  gap: 0.5rem;
+  padding: 0 1rem 1.5rem;
+}
+.side-nav-links,
+.side-nav-tweaks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+.side-nav-links > li,
+.side-nav-tweaks > li {
+  width: 100%;
+}
+.side-nav-links > li > a,
+.side-nav-tweaks > li > a,
+.side-nav-tweaks > li > button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: 0.4s ease;
+}
+.side-nav-links > li > a.active,
+.side-nav-tweaks > li > a.active {
+  background-color: var(--primary-color);
+  color: var(--bg-primary);
+}
+.side-nav-tweaks {
+  margin-top: auto;
+  gap: 0.25rem;
+}
+.side-nav-tweaks > li > button {
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--error);
+  cursor: pointer;
+}
+.side-nav-tweaks > li > button:hover {
+  border: 1px solid var(--error);
+}
+/*  Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  .side-bar {
+    padding: 1rem 2rem;
+    gap: 1rem;
+    min-width: 200px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+}
+
+/*  Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .side-bar {
+    padding: 1.5rem 0.1rem;
+    min-width: fit-content;
+    width: fit-content;
+    align-items: center;
+  }
+  .logo {
+    gap: 0.5rem;
+    padding: 0 0.5rem 1.5rem;
+  }
+  .logo > span {
+    display: none;
+  }
+  .side-nav-links,
+  .side-nav-tweaks {
+    width: fit-content;
+  }
+  .side-nav-links > li > a > span,
+  .side-nav-tweaks > li > a > span {
+    display: none;
+  }
+  .side-nav-links > li > a,
+  .side-nav-tweaks > li > a,
+  .side-nav-tweaks > li > button {
+    padding: 0.7rem;
+  }
+  .side-nav-tweaks > li > button > span {
+    display: none;
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+}

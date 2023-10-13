@@ -1,7 +1,10 @@
+import Sidebar from "./Sidebar";
+
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <h1>Welcome to dashboard</h1>
+      <main></main>
+      {/* this content is changed */}
     </div>
   );
 };

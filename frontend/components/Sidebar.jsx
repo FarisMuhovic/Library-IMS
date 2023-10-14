@@ -1,7 +1,10 @@
 import {NavLink} from "react-router-dom";
 import "./sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({setlinkClicked}) => {
+  const linkClicked = () => {
+    setlinkClicked(prevval => !prevval);
+  };
   return (
     <aside className="side-bar">
       <div className="logo">
@@ -10,31 +13,31 @@ const Sidebar = () => {
       </div>
       <ul className="side-nav-links">
         <li>
-          <NavLink to={"/"}>
+          <NavLink to={"/"} onClick={linkClicked}>
             <i className="material-symbols-outlined">dashboard</i>
             <span>Dashboard</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/members"}>
+          <NavLink to={"/members"} onClick={linkClicked}>
             <i className="material-symbols-outlined">group</i>
             <span>Members</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/books"}>
+          <NavLink to={"/books"} onClick={linkClicked}>
             <i className="material-symbols-outlined">book_2</i>
             <span>Books</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/employees"}>
+          <NavLink to={"/employees"} onClick={linkClicked}>
             <i className="material-symbols-outlined">manage_accounts</i>
             <span>Employees</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/transactions"}>
+          <NavLink to={"/transactions"} onClick={linkClicked}>
             <i className="material-symbols-outlined">receipt_long</i>
             <span>Transactions</span>
           </NavLink>
@@ -42,7 +45,7 @@ const Sidebar = () => {
       </ul>
       <ul className="side-nav-tweaks">
         <li>
-          <NavLink to={"/settings"}>
+          <NavLink to={"/settings"} onClick={linkClicked}>
             <i className="material-symbols-outlined">settings</i>
             <span>Settings</span>
           </NavLink>

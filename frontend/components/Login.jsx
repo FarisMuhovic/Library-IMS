@@ -45,7 +45,7 @@ const Login = () => {
         setloaderBtn(false);
         if (res.status == 200) {
           setlabelStatus("success");
-          navigate("/dashboard");
+          navigate("/");
         } else {
           console.log("wrong info");
           setlabelStatus("error");

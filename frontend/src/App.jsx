@@ -12,6 +12,8 @@ import {useState, useEffect} from "react";
 function App() {
   let navigate = useNavigate();
   const [sessionExists, setsessionExists] = useState("");
+  const [linkClicked, setlinkClicked] = useState(false);
+  
   useEffect(() => {
     fetch("http://localhost:5000/auth/loggedin", {
       method: "GET",
@@ -28,16 +30,16 @@ function App() {
         }
       })
       .then(data => {
-        // console.log(data.message);
+        console.log(data.message);
         data.message && setsessionExists("dash");
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [linkClicked]);
   useEffect(() => {
     if (sessionExists == "dash") {
-      navigate("/dashboard");
+      navigate("/");
     } else if (sessionExists == "auth") {
       navigate("/login");
     }
@@ -50,8 +52,8 @@ function App() {
           path={"/"}
           element={
             <>
-              <Sidebar />
-              <Dashboard />
+              <Sidebar setlinkClicked={setlinkClicked} />
+              <Dashboard setlinkClicked={setlinkClicked}/>
             </>
           }
         />
@@ -59,8 +61,8 @@ function App() {
           path={"/members"}
           element={
             <>
-              <Sidebar />
-              <Members />
+              <Sidebar setlinkClicked={setlinkClicked} />
+              <Members setlinkClicked={setlinkClicked}/>
             </>
           }
         />
@@ -68,8 +70,8 @@ function App() {
           path={"/books"}
           element={
             <>
-              <Sidebar />
-              <Books />
+              <Sidebar setlinkClicked={setlinkClicked} />
+              <Books setlinkClicked={setlinkClicked}/>
             </>
           }
         />
@@ -77,8 +79,8 @@ function App() {
           path={"/employees"}
           element={
             <>
-              <Sidebar />
-              <Employees />
+              <Sidebar setlinkClicked={setlinkClicked} />
+              <Employees setlinkClicked={setlinkClicked} />
             </>
           }
         />
@@ -86,8 +88,8 @@ function App() {
           path={"/transactions"}
           element={
             <>
-              <Sidebar />
-              <Transactions />
+              <Sidebar setlinkClicked={setlinkClicked} />
+              <Transactions setlinkClicked={setlinkClicked}/>
             </>
           }
         />
@@ -95,8 +97,8 @@ function App() {
           path={"/settings"}
           element={
             <>
-              <Sidebar />
-              <Settings />
+              <Sidebar setlinkClicked={setlinkClicked} />
+              <Settings setlinkClicked={setlinkClicked}/>
             </>
           }
         />

@@ -34,6 +34,7 @@ const connection = mysql.createConnection({
   user: process.env.SQLUSER,
   password: process.env.SQLPASSWORD,
   database: process.env.SQLDATABASE,
+  multipleStatements: true,
 });
 
 // Sessions
@@ -58,3 +59,5 @@ app.use(
 // Routers & Routes
 const authRoute = require("./routes/auth.js")(connection, mysql);
 app.use("/auth", authRoute);
+const dashboardRoute = require("./routes/dashboardAPI")(connection, mysql);
+app.use("/api", dashboardRoute);

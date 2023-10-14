@@ -1,13 +1,14 @@
 import Breadcrumbs from "./Breadcrumbs";
 import TopNav from "./Topnav";
-const Transactions = ({setlinkClicked}) => {
+
+const Members = ({setlinkClicked}) => {
   return (
-    <main className="transactions">
+    <main className="members">
       <TopNav setlinkClicked={setlinkClicked} />
       <Breadcrumbs />
-      transactions
+      Members
     </main>
   );
 };
 
-export default Transactions;
+export default Members;

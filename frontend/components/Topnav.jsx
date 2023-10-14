@@ -1,6 +1,6 @@
 import {useLocation, Link} from "react-router-dom";
 import "./topnav.css";
-const TopNav = () => {
+const TopNav = ({setlinkClicked}) => {
   const location = useLocation();
   let path = location.pathname;
   console.log(path);
@@ -12,7 +12,10 @@ const TopNav = () => {
   return (
     <nav className="top-nav">
       <span>{path}</span>
-      <Link to={"/settings"}>
+      <Link
+        to={"/settings"}
+        onClick={() => setlinkClicked(prevval => !prevval)}
+      >
         <i className="material-symbols-outlined">account_circle</i>
       </Link>
     </nav>

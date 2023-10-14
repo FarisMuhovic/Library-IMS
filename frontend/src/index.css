@@ -38,19 +38,113 @@ body,
   width: 100%;
 }
 /* DASHBOARD */
-
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.25rem;
+  overflow: scroll;
+  height: 75vh;
+}
+.transactions-overview {
+  grid-column: 2/ 3;
+  grid-row: 1/ -1;
+}
+.members-overview,
+.books-overview,
+.transactions-overview {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 70px 1fr;
+  gap: 1rem 0;
+  width: 100%;
+}
+.members-overview > h2,
+.books-overview > h2,
+.transactions-overview > h2 {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-primary);
+  color: var(--font-color);
+  font-size: 1rem;
+}
+.members-overview > h2 span,
+.books-overview > h2 span,
+.transactions-overview > h2 span {
+  font-size: 1.5rem;
+}
+.members-overview > h2:first-child,
+.books-overview > h2:first-child,
+.transactions-overview > h2:first-child {
+  background-color: var(--primary-color);
+  color: var(--bg-primary);
+  border-radius: 1rem 0 0 1rem;
+}
+/* DASHBOARD TABLES */
+.dash-table {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1/-1;
+  background-color: var(--bg-primary);
+  width: 100%;
+  padding: 1rem;
+  min-height: 100px;
+  border-radius: 1rem;
+  text-wrap: wrap;
+}
+.dash-caption {
+  padding-bottom: 0.5rem;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  height: 50px;
+}
+.row p:first-child {
+  text-align: left;
+}
+.row p {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+}
 /*  Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {
 }
 
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin: 0.25rem;
+  }
+  .transactions-overview {
+    grid-column: 1/ -1;
+  }
 }
 
 /*  Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
+  .row {
+    font-size: 0.8rem;
+  }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+  .members-overview > h2,
+  .books-overview > h2,
+  .transactions-overview > h2 {
+    font-size: 0.8rem;
+  }
+  .members-overview > h2 span,
+  .books-overview > h2 span,
+  .transactions-overview > h2 span {
+    font-size: 1.25rem;
+  }
 }

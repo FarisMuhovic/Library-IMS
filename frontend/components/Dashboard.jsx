@@ -1,176 +1,139 @@
 import Breadcrumbs from "./Breadcrumbs";
 import TopNav from "./Topnav";
+import {useEffect, useState} from "react";
 
-const Dashboard = () => {
+const Dashboard = ({setlinkClicked}) => {
+  const [queryData, setqueryData] = useState();
+  console.log(queryData);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/dashboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then(res => {
+        if (res.status == 200) {
+          return res.json();
+        }
+      })
+      .then(data => {
+        // console.log(data);
+        setqueryData(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
   return (
     <main className="dashboard">
-      <TopNav />
+      <TopNav setlinkClicked={setlinkClicked} />
       <Breadcrumbs />
       <div className="dashboard-grid">
         <section className="members-overview">
           <h2>
             Total members <br />
-            <span>40</span>
+            <span>{queryData ? queryData.totalMembers : 0}</span>
           </h2>
           <h2>
             New members <br />
-            <span>6</span>
+            <span>{queryData ? queryData.newMemberCount : 0}</span>
           </h2>
-          <table className="new-members-info">
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Genre</th>
-              <th>Publish Date</th>
-              <th>Shelf Location</th>
-            </tr>
-            <tr>
-              <td>12345</td>
-              <td>John</td>
-              <td>Doe</td>
-              <td>30</td>
-              <td>2023-10-01</td>
-            </tr>
-            <tr>
-              <td>1001</td>
-              <td>Alice</td>
-              <td>Johnson</td>
-              <td>28</td>
-              <td>2023-09-15</td>
-            </tr>
-            <tr>
-              <td>1002</td>
-              <td>Bob</td>
-              <td>Smith</td>
-              <td>35</td>
-              <td>2023-08-20</td>
-            </tr>
-            <tr>
-              <td>1003</td>
-              <td>Emily</td>
-              <td>Davis</td>
-              <td>24</td>
-              <td>2023-09-30</td>
-            </tr>
-            <tr>
-              <td>1005</td>
-              <td>Mary</td>
-              <td>Smith</td>
-              <td>32</td>
-              <td>2023-09-25</td>
-            </tr>
-          </table>
-        </section>
-        <section className="books-overview">
-          <h2>
-            Total books <br />
-            <span>247</span>
-          </h2>
-          <h2>
-            Books out of stock
-            <br />
-            <span>0</span>
-          </h2>
-          <table className="low-quantity-info">
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Genre</th>
-              <th>Publish Date</th>
-              <th>Shelf Location</th>
-            </tr>
-            <tr>
-              <td>12345</td>
-              <td>John</td>
-              <td>Doe</td>
-              <td>30</td>
-              <td>2023-10-01</td>
-            </tr>
-            <tr>
-              <td>1001</td>
-              <td>Alice</td>
-              <td>Johnson</td>
-              <td>28</td>
-              <td>2023-09-15</td>
-            </tr>
-            <tr>
-              <td>1002</td>
-              <td>Bob</td>
-              <td>Smith</td>
-              <td>35</td>
-              <td>2023-08-20</td>
-            </tr>
-            <tr>
-              <td>1003</td>
-              <td>Emily</td>
-              <td>Davis</td>
-              <td>24</td>
-              <td>2023-09-30</td>
-            </tr>
-            <tr>
-              <td>1005</td>
-              <td>Mary</td>
-              <td>Smith</td>
-              <td>32</td>
-              <td>2023-09-25</td>
-            </tr>
-          </table>
+          <div className="dash-table">
+            <p className="dash-caption">New users info</p>
+            <div className="table-attributes row">
+              <p>First name</p>
+              <p>Last name</p>
+              <p>Age</p>
+              <p>Date registered</p>
+            </div>
+
+            {queryData
+              ? queryData.newMembers.map(member => {
+                  return (
+                    <div className="table-row row">
+                      <p>{member.fname}</p>
+                      <p>{member.lastname}</p>
+                      <p>{member.age}</p>
+                      <p>
+                        {new Date(member.dateRegistered).toLocaleDateString()}
+                      </p>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
         </section>
         <section className="transactions-overview">
-          {" "}
           <h2>
             Transactions <br />
-            <span>13</span>
+            <span>{queryData ? queryData.transactionsCount : 0}</span>
           </h2>
           <h2>
             Active
             <br />
-            <span>4</span>
+            <span>{queryData ? queryData.rentedTransactionsCount : 0}</span>
           </h2>
-          <table className="latest-transactions-info">
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Genre</th>
-              <th>Publish Date</th>
-              <th>Shelf Location</th>
-            </tr>
-            <tr>
-              <td>12345</td>
-              <td>John</td>
-              <td>Doe</td>
-              <td>30</td>
-              <td>2023-10-01</td>
-            </tr>
-            <tr>
-              <td>1001</td>
-              <td>Alice</td>
-              <td>Johnson</td>
-              <td>28</td>
-              <td>2023-09-15</td>
-            </tr>
-            <tr>
-              <td>1002</td>
-              <td>Bob</td>
-              <td>Smith</td>
-              <td>35</td>
-              <td>2023-08-20</td>
-            </tr>
-            <tr>
-              <td>1003</td>
-              <td>Emily</td>
-              <td>Davis</td>
-              <td>24</td>
-              <td>2023-09-30</td>
-            </tr>
-            <tr>
-              <td>1005</td>
-              <td>Mary</td>
-              <td>Smith</td>
-              <td>32</td>
-              <td>2023-09-25</td>
-            </tr>
-          </table>
+          <div className="dash-table">
+            <p className="dash-caption">Latest transactions</p>
+            <div className="table-attributes row">
+              <p>Date created</p>
+              <p>Return date</p>
+              <p>Book Title</p>
+              <p>Status</p>
+            </div>
+
+            {queryData
+              ? queryData.rentedTransactions.map(transaction => {
+                  return (
+                    <div className="table-row row">
+                      <p>
+                        {new Date(transaction.dateCreated).toLocaleDateString()}
+                      </p>
+                      <p>
+                        {new Date(transaction.returnDate).toLocaleDateString()}
+                      </p>
+                      <p>{transaction.title}</p>
+                      <p>{transaction.status}</p>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
+        </section>
+        <section className="books-overview">
+          <h2>
+            Unique books <br />
+            <span>{queryData ? queryData.differentBooks : 0}</span>
+          </h2>
+          <h2>
+            Low stock books
+            <br />
+            <span>{queryData ? queryData.lowQuantityBooksCount : 0}</span>
+          </h2>
+          <div className="dash-table">
+            <p className="dash-caption">Books with low quantity.</p>
+            <div className="table-attributes row">
+              <p>Title</p>
+              <p>Copies</p>
+              <p>Author</p>
+              <p>Genre</p>
+            </div>
+
+            {queryData
+              ? queryData.lowQuantityBooks.map(book => {
+                  return (
+                    <div className="table-row row">
+                      <p>{book.title}</p>
+                      <p>{book.copiesTotal}</p>
+                      <p>{book.author}</p>
+                      <p>{book.genre}</p>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
         </section>
       </div>
     </main>

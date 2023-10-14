@@ -10,15 +10,15 @@ const Sidebar = () => {
       </div>
       <ul className="side-nav-links">
         <li>
-          <NavLink to={"/dashboard"}>
+          <NavLink to={"/"}>
             <i className="material-symbols-outlined">dashboard</i>
             <span>Dashboard</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/customers"}>
+          <NavLink to={"/members"}>
             <i className="material-symbols-outlined">group</i>
-            <span>Customers</span>
+            <span>Members</span>
           </NavLink>
         </li>
         <li>
@@ -39,13 +39,6 @@ const Sidebar = () => {
             <span>Transactions</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink to={"/inventory"}>
-            <i className="material-symbols-outlined">inventory_2</i>
-            <span>Inventory</span>
-          </NavLink>
-        </li>
-        <li></li>
       </ul>
       <ul className="side-nav-tweaks">
         <li>

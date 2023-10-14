@@ -1,10 +1,9 @@
 import Login from "../components/Login";
 import Dashboard from "../components/Dashboard";
-import Customers from "../components/Customers";
+import Members from "../components/Members";
 import Books from "../components/Books";
 import Employees from "../components/Employees";
 import Transactions from "../components/Transactions";
-import Inventory from "../components/Inventory";
 import Settings from "../components/Settings";
 import Sidebar from "../components/Sidebar";
 import {Routes, Route, useNavigate} from "react-router-dom";
@@ -46,10 +45,9 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        {/* <Route path={"/"} element={<h1>Loading...Please Wait...</h1>} /> */}
         <Route path={"/login"} element={<Login />} />
         <Route
-          path={"/dashboard"}
+          path={"/"}
           element={
             <>
               <Sidebar />
@@ -58,11 +56,11 @@ function App() {
           }
         />
         <Route
-          path={"/customers"}
+          path={"/members"}
           element={
             <>
               <Sidebar />
-              <Customers />
+              <Members />
             </>
           }
         />
@@ -90,15 +88,6 @@ function App() {
             <>
               <Sidebar />
               <Transactions />
-            </>
-          }
-        />
-        <Route
-          path={"/inventory"}
-          element={
-            <>
-              <Sidebar />
-              <Inventory />
             </>
           }
         />

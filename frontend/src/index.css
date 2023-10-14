@@ -13,6 +13,7 @@ html {
   --primary-color: #5570f1;
   --bg-primary: #ffffff;
   --bg-secondary: #eff2ff;
+  --bg-terniary: #f4f5fa;
   --font-color: #53545c;
   --font-accent: #000000;
   --error: #e63d31;
@@ -23,10 +24,21 @@ html {
 
 body,
 .app {
-  background-color: black;
-  color: white;
   display: flex;
+  width: 100vw;
 }
+.dashboard,
+.members,
+.books,
+.employees,
+.transactions,
+.settings {
+  background-color: var(--bg-terniary);
+  color: var(--font-color);
+  width: 100%;
+}
+/* DASHBOARD */
+
 /*  Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {
 }

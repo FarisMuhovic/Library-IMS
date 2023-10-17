@@ -61,3 +61,12 @@ const authRoute = require("./routes/auth.js")(connection, mysql);
 app.use("/auth", authRoute);
 const dashboardRoute = require("./routes/dashboardAPI")(connection, mysql);
 app.use("/api", dashboardRoute);
+const membersRoute = require("./routes/membersApi")(connection, mysql);
+app.use("/api", membersRoute);
+const booksRoute = require("./routes/booksApi")(connection, mysql);
+app.use("/api", booksRoute);
+const transactionsRoute = require("./routes/transactionsApi")(
+  connection,
+  mysql
+);
+app.use("/api", transactionsRoute);

@@ -13,7 +13,7 @@ function App() {
   let navigate = useNavigate();
   const [sessionExists, setsessionExists] = useState("");
   const [linkClicked, setlinkClicked] = useState(false);
-  
+
   useEffect(() => {
     fetch("http://localhost:5000/auth/loggedin", {
       method: "GET",
@@ -31,7 +31,7 @@ function App() {
       })
       .then(data => {
         console.log(data.message);
-        data.message && setsessionExists("dash");
+        // data.message && setsessionExists("dash");
       })
       .catch(err => {
         console.log(err);
@@ -53,7 +53,7 @@ function App() {
           element={
             <>
               <Sidebar setlinkClicked={setlinkClicked} />
-              <Dashboard setlinkClicked={setlinkClicked}/>
+              <Dashboard setlinkClicked={setlinkClicked} />
             </>
           }
         />
@@ -62,7 +62,7 @@ function App() {
           element={
             <>
               <Sidebar setlinkClicked={setlinkClicked} />
-              <Members setlinkClicked={setlinkClicked}/>
+              <Members setlinkClicked={setlinkClicked} />
             </>
           }
         />
@@ -71,7 +71,7 @@ function App() {
           element={
             <>
               <Sidebar setlinkClicked={setlinkClicked} />
-              <Books setlinkClicked={setlinkClicked}/>
+              <Books setlinkClicked={setlinkClicked} />
             </>
           }
         />
@@ -89,7 +89,7 @@ function App() {
           element={
             <>
               <Sidebar setlinkClicked={setlinkClicked} />
-              <Transactions setlinkClicked={setlinkClicked}/>
+              <Transactions setlinkClicked={setlinkClicked} />
             </>
           }
         />
@@ -98,7 +98,7 @@ function App() {
           element={
             <>
               <Sidebar setlinkClicked={setlinkClicked} />
-              <Settings setlinkClicked={setlinkClicked}/>
+              <Settings setlinkClicked={setlinkClicked} />
             </>
           }
         />

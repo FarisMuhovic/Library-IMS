@@ -1,6 +1,7 @@
 import Breadcrumbs from "./Breadcrumbs";
 import TopNav from "./Topnav";
 import {useEffect, useState} from "react";
+
 const Books = ({setlinkClicked}) => {
   const [queryData, setqueryData] = useState();
   const [filteredData, setfilteredData] = useState();
@@ -16,7 +17,6 @@ const Books = ({setlinkClicked}) => {
       setfilteredData(filtered);
     }
   };
-  console.log(queryData);
   useEffect(() => {
     fetch("http://localhost:5000/api/books", {
       method: "GET",
@@ -39,7 +39,70 @@ const Books = ({setlinkClicked}) => {
         console.log(err);
       });
   }, []);
-
+  const [newBookData, setnewBookData] = useState({
+    ISBN: "",
+    title: "",
+    author: "",
+    genre: "",
+    publishDate: "",
+    shelfLocation: "",
+    copiesTotal: 0,
+  });
+  const [modalState, setmodalState] = useState(false);
+  const [errorModal, seterrorModal] = useState({
+    statedisplay: false,
+    message: "",
+  });
+  const newBookModalState = () => {
+    setmodalState(prevval => !prevval);
+  };
+  const handleInputBook = e => {
+    setnewBookData(prevdata => {
+      return {...prevdata, [e.target.name]: e.target.value};
+    });
+  };
+  function submitBook(e) {
+    e.preventDefault();
+    fetch("http://localhost:5000/api/addbook", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(newBookData),
+    })
+      .then(res => {
+        if (res.status == 200) {
+          seterrorModal({statedisplay: true, message: "success"});
+          setTimeout(() => {
+            setmodalState(false);
+            seterrorModal({statedisplay: false, message: ""});
+            setnewBookData({
+              ISBN: "",
+              title: "",
+              author: "",
+              genre: "",
+              publishDate: "",
+              shelfLocation: "",
+              copiesTotal: 0,
+            });
+          }, 3000);
+          return res.json();
+        } else {
+          seterrorModal({statedisplay: true, message: "error"});
+        }
+      })
+      .then(data => {
+        setfilteredData(prevdata => {
+          return [...prevdata, data.data];
+        });
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  console.log(queryData);
   return (
     <main className="books">
       <TopNav setlinkClicked={setlinkClicked} />
@@ -56,8 +119,8 @@ const Books = ({setlinkClicked}) => {
               <i className="material-symbols-outlined">search</i>
             </button>
           </form>
-          <button>
-            <span>+ </span>
+          <button onClick={newBookModalState}>
+            <i className="material-symbols-outlined">add</i>
             Add new book
           </button>
         </div>
@@ -89,6 +152,120 @@ const Books = ({setlinkClicked}) => {
             : ""}
         </div>
       </div>
+      {modalState && (
+        <div
+          className="modal"
+          onClick={e => {
+            e.target.classList[0] == "modal" &&
+              setmodalState(prevval => !prevval);
+          }}
+        >
+          <form onSubmit={submitBook}>
+            <div className="form-text">
+              <p>New book</p>
+              <button
+                type="button"
+                className="exit-btn"
+                onClick={() => {
+                  setmodalState(false);
+                }}
+              >
+                <i class="material-symbols-outlined">close</i>
+              </button>
+            </div>
+            <label>
+              <span>ISBN code</span>
+              <input
+                type="text"
+                placeholder="ISBN code"
+                required
+                name="ISBN"
+                value={newBookData.ISBN}
+                onChange={handleInputBook}
+              />
+            </label>
+            <label>
+              <span>Title of the book</span>
+              <input
+                type="text"
+                placeholder="Title"
+                required
+                name="title"
+                value={newBookData.title}
+                onChange={handleInputBook}
+              />{" "}
+            </label>
+            <label>
+              <span>Author</span>
+              <input
+                type="text"
+                placeholder="Author"
+                required
+                name="author"
+                value={newBookData.author}
+                onChange={handleInputBook}
+              />
+            </label>
+            <label>
+              <span>Genre</span>
+              <input
+                type="text"
+                placeholder="Genre"
+                required
+                name="genre"
+                value={newBookData.genre}
+                onChange={handleInputBook}
+              />{" "}
+            </label>
+            <label>
+              <span>Publish Date</span>
+              <input
+                type="date"
+                placeholder="Date"
+                required
+                name="publishDate"
+                value={newBookData.publishDate}
+                onChange={handleInputBook}
+              />
+            </label>
+            <label>
+              <span>Shelf location</span>
+              <input
+                type="text"
+                placeholder="Shelf Location"
+                required
+                name="shelfLocation"
+                value={newBookData.shelfLocation}
+                onChange={handleInputBook}
+              />{" "}
+            </label>{" "}
+            <label>
+              <span>Copies</span>
+              <input
+                type="number"
+                placeholder="Copies"
+                required
+                name="copiesTotal"
+                value={newBookData.copiesTotal}
+                onChange={handleInputBook}
+              />{" "}
+            </label>
+            <button type="submit" className="form-btn">
+              <i className="material-symbols-outlined">add</i>
+              <span>Add</span>
+            </button>
+          </form>
+          {errorModal.statedisplay && (
+            <p
+              class={`error-modal ${
+                errorModal.message == "error" ? "err" : "succ"
+              }`}
+            >
+              {errorModal.message}
+            </p>
+          )}
+        </div>
+      )}
     </main>
   );
 };

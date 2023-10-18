@@ -223,6 +223,110 @@ body,
   overflow: scroll;
 }
 
+/* MODAL */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.493);
+  width: 101vw;
+  height: 101vh;
+  overflow: hidden;
+}
+.modal > form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  min-height: 500px;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--bg-primary);
+  padding: 2rem;
+}
+.modal > form p {
+  align-self: flex-start;
+  padding: 0.5rem 0;
+}
+.modal > form label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.modal > form > label > span {
+  padding: 0.5rem 0;
+}
+.modal > form input {
+  width: 100%;
+  height: 35px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--font-color);
+}
+.modal > form > .form-btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  border: none;
+  color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: auto;
+}
+.form-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.modal .exit-btn {
+  background-color: transparent;
+  border: none;
+}
+.modal .exit-btn > i {
+  font-size: 2rem;
+}
+.error-modal {
+  color: var(--bg-primary);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 30px);
+  border-radius: 0.5rem;
+  text-align: center;
+  text-transform: capitalize;
+  width: 100px;
+  padding: 0.5rem;
+  animation: modalfade 3s;
+}
+@keyframes modalfade {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.error-modal.succ {
+  background-color: var(--success);
+}
+.error-modal.err {
+  background-color: var(--error);
+}
 /*  Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {
 }
@@ -267,5 +371,9 @@ body,
   }
   .top-side-grid > button {
     width: 100%;
+  }
+  .modal > form {
+    top: 50%;
+    transform: translate(-50%, -75%);
   }
 }

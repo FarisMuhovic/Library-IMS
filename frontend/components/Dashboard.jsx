@@ -41,7 +41,7 @@ const Dashboard = ({setlinkClicked}) => {
             <span>{queryData ? queryData.newMemberCount : 0}</span>
           </h2>
           <div className="dash-table">
-            <p className="dash-caption">New users info</p>
+            <p className="dash-caption">Newest users</p>
             <div className="table-attributes row">
               <p>First name</p>
               <p>Last name</p>

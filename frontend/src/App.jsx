@@ -27,6 +27,7 @@ function App() {
           return res.json();
         } else {
           setsessionExists("auth");
+          navigate("/login", {replace: true});
         }
       })
       .then(data => {
@@ -36,12 +37,12 @@ function App() {
       .catch(err => {
         console.log(err);
       });
-  }, [linkClicked]);
+  }, [linkClicked, sessionExists, navigate]);
   useEffect(() => {
     if (sessionExists == "dash") {
       navigate("/");
     } else if (sessionExists == "auth") {
-      navigate("/login");
+      navigate("/login", {replace: true});
     }
   }, [sessionExists]);
   return (
@@ -52,7 +53,10 @@ function App() {
           path={"/"}
           element={
             <>
-              <Sidebar setlinkClicked={setlinkClicked} />
+              <Sidebar
+                setlinkClicked={setlinkClicked}
+                setsessionExists={setsessionExists}
+              />
               <Dashboard setlinkClicked={setlinkClicked} />
             </>
           }
@@ -61,7 +65,10 @@ function App() {
           path={"/members"}
           element={
             <>
-              <Sidebar setlinkClicked={setlinkClicked} />
+              <Sidebar
+                setlinkClicked={setlinkClicked}
+                setsessionExists={setsessionExists}
+              />
               <Members setlinkClicked={setlinkClicked} />
             </>
           }
@@ -70,7 +77,10 @@ function App() {
           path={"/books"}
           element={
             <>
-              <Sidebar setlinkClicked={setlinkClicked} />
+              <Sidebar
+                setlinkClicked={setlinkClicked}
+                setsessionExists={setsessionExists}
+              />
               <Books setlinkClicked={setlinkClicked} />
             </>
           }
@@ -79,7 +89,10 @@ function App() {
           path={"/employees"}
           element={
             <>
-              <Sidebar setlinkClicked={setlinkClicked} />
+              <Sidebar
+                setlinkClicked={setlinkClicked}
+                setsessionExists={setsessionExists}
+              />
               <Employees setlinkClicked={setlinkClicked} />
             </>
           }
@@ -88,7 +101,10 @@ function App() {
           path={"/transactions"}
           element={
             <>
-              <Sidebar setlinkClicked={setlinkClicked} />
+              <Sidebar
+                setlinkClicked={setlinkClicked}
+                setsessionExists={setsessionExists}
+              />
               <Transactions setlinkClicked={setlinkClicked} />
             </>
           }
@@ -97,7 +113,10 @@ function App() {
           path={"/settings"}
           element={
             <>
-              <Sidebar setlinkClicked={setlinkClicked} />
+              <Sidebar
+                setlinkClicked={setlinkClicked}
+                setsessionExists={setsessionExists}
+              />
               <Settings setlinkClicked={setlinkClicked} />
             </>
           }

@@ -15,5 +15,50 @@ module.exports = (connection, mysql) => {
       }
     );
   });
+  router.post("/addbook", (req, res) => {
+    const {
+      ISBN,
+      title,
+      author,
+      genre,
+      publishDate,
+      shelfLocation,
+      copiesTotal,
+    } = req.body;
+    connection.query(
+      "INSERT INTO book (isbn, title, author, genre, publishDate, shelfLocation) VALUES (?, ?, ?, ? ,?, ?)",
+      [ISBN, title, author, genre, publishDate, shelfLocation],
+      function (err, results, field) {
+         if (!err) {
+          connection.query(
+            "INSERT INTO book_copies (isbn, copiesTotal) VALUES (?, ?)",
+            [ISBN, copiesTotal],
+            function (err, results, field) {
+               if (!err) {
+                res
+                  .status(200)
+                  .json({message: "Book inserted", data: req.body});
+              } else {
+                res.status(400).json({message: "Insertion failed"});
+              }
+            }
+          );
+        } else {
+          res.status(400).json({message: "Insertion failed"});
+        }
+      }
+    );
+    // connection.query(
+    //   "INSERT INTO member (libraryCardNumber, fname, lastname, age, dateRegistered, phoneNumber) VALUES (?, ?, ?, ? ,?, ?)",
+    //   [libraryCardNumber, fname, lastname, age, formattedDate, phoneNumber],
+    //   function (err, results, field) {
+    //     if (!err) {
+    //       res.status(200).json({message: "Member inserted", data: req.body});
+    //     } else {
+    //       res.status(400).json({message: "Insertion failed"});
+    //     }
+    //   }
+    // );
+  });
   return router;
 };

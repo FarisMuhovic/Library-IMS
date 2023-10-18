@@ -1,9 +1,9 @@
 import Breadcrumbs from "./Breadcrumbs";
 import TopNav from "./Topnav";
+import {v4 as uuidv4} from "uuid";
 import {useEffect, useState} from "react";
 const Members = ({setlinkClicked}) => {
   const [queryData, setqueryData] = useState();
-  console.log(queryData);
   const [filteredData, setfilteredData] = useState();
   const [searchInput, setsearchInput] = useState();
   const handleInput = e => {
@@ -40,7 +40,71 @@ const Members = ({setlinkClicked}) => {
         console.log(err);
       });
   }, []);
-
+  const [newMemberData, setnewMemberData] = useState({
+    libraryCardNumber: "",
+    fname: "",
+    lastname: "",
+    age: "",
+    dateRegistered: "",
+    phoneNumber: "",
+  });
+  const [modalState, setmodalState] = useState(false);
+  const [errorModal, seterrorModal] = useState({
+    statedisplay: false,
+    message: "",
+  });
+  const newMemberModalState = () => {
+    setmodalState(prevval => !prevval);
+  };
+  const handleInputMember = e => {
+    setnewMemberData(prevdata => {
+      return {...prevdata, [e.target.name]: e.target.value};
+    });
+  };
+  function submitMember(e) {
+    e.preventDefault();
+    fetch("http://localhost:5000/api/addmember", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        ...newMemberData,
+        libraryCardNumber: uuidv4(),
+        dateRegistered: new Date().toLocaleDateString(),
+      }),
+    })
+      .then(res => {
+        if (res.status == 200) {
+          seterrorModal({statedisplay: true, message: "success"});
+          setTimeout(() => {
+            setmodalState(false);
+            seterrorModal({statedisplay: false, message: ""});
+            setnewMemberData({
+              libraryCardNumber: "",
+              fname: "",
+              lastname: "",
+              age: "",
+              dateRegistered: "",
+              phoneNumber: "",
+            });
+          }, 3000);
+          return res.json();
+        } else {
+          seterrorModal({statedisplay: true, message: "error"});
+        }
+      })
+      .then(data => {
+        setqueryData(prevdata => {
+          return [...prevdata, data.data];
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  console.log(queryData);
   return (
     <main className="members">
       <TopNav setlinkClicked={setlinkClicked} />
@@ -57,7 +121,7 @@ const Members = ({setlinkClicked}) => {
               <i className="material-symbols-outlined">search</i>
             </button>
           </form>
-          <button>
+          <button onClick={newMemberModalState}>
             <i className="material-symbols-outlined">add</i>
             <span>Add new member</span>
           </button>
@@ -70,7 +134,6 @@ const Members = ({setlinkClicked}) => {
             <p>Age</p>
             <p>Date Registered</p>
             <p>Phone Number</p>
-            <p>Membership Info</p>
           </div>
           {filteredData
             ? filteredData.map(member => {
@@ -83,13 +146,93 @@ const Members = ({setlinkClicked}) => {
                       {new Date(member.dateRegistered).toLocaleDateString()}
                     </p>
                     <p>{member.phoneNumber}</p>
-                    <button>Membership</button>
                   </div>
                 );
               })
             : ""}
         </div>
       </div>
+      {modalState && (
+        <div
+          className="modal"
+          onClick={e => {
+            e.target.classList[0] == "modal" &&
+              setmodalState(prevval => !prevval);
+          }}
+        >
+          <form onSubmit={submitMember}>
+            <div className="form-text">
+              <p>New member registration</p>
+              <button
+                type="button"
+                className="exit-btn"
+                onClick={() => {
+                  setmodalState(false);
+                }}
+              >
+                <i class="material-symbols-outlined">close</i>
+              </button>
+            </div>
+            <label>
+              <span>First name</span>
+              <input
+                type="text"
+                placeholder="First name"
+                required
+                name="fname"
+                value={newMemberData.fname}
+                onChange={handleInputMember}
+              />
+            </label>
+            <label>
+              <span>Last name</span>
+              <input
+                type="text"
+                placeholder="Last name"
+                required
+                name="lastname"
+                value={newMemberData.lastname}
+                onChange={handleInputMember}
+              />{" "}
+            </label>
+            <label>
+              <span>Age</span>
+              <input
+                type="number"
+                placeholder="Age"
+                required
+                name="age"
+                value={newMemberData.age}
+                onChange={handleInputMember}
+              />
+            </label>
+            <label>
+              <span>Phone number</span>
+              <input
+                type="phone"
+                placeholder="Phone Number"
+                required
+                name="phoneNumber"
+                value={newMemberData.phoneNumber}
+                onChange={handleInputMember}
+              />{" "}
+            </label>
+            <button type="submit" className="form-btn">
+              <i className="material-symbols-outlined">add</i>
+              <span>Add</span>
+            </button>
+          </form>
+          {errorModal.statedisplay && (
+            <p
+              class={`error-modal ${
+                errorModal.message == "error" ? "err" : "succ"
+              }`}
+            >
+              {errorModal.message}
+            </p>
+          )}
+        </div>
+      )}
     </main>
   );
 };

@@ -1,9 +1,28 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import "./sidebar.css";
 
-const Sidebar = ({setlinkClicked}) => {
+const Sidebar = ({setlinkClicked, setsessionExists}) => {
+  const navigate = useNavigate();
   const linkClicked = () => {
     setlinkClicked(prevval => !prevval);
+  };
+  const logout = () => {
+    fetch("http://localhost:5000/auth/logout", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then(res => {
+        document.cookie =
+          "sid" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        navigate("/login", {replace: true});
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
   };
   return (
     <aside className="side-bar">
@@ -51,7 +70,7 @@ const Sidebar = ({setlinkClicked}) => {
           </NavLink>
         </li>
         <li>
-          <button>
+          <button onClick={logout}>
             <i className="material-symbols-outlined">logout</i>
             <span>Logout</span>
           </button>

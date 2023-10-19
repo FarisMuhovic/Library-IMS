@@ -21,7 +21,7 @@ const Sidebar = ({setlinkClicked, setsessionExists}) => {
       })
 
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   };
   return (

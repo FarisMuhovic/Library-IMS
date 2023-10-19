@@ -36,7 +36,7 @@ const Books = ({setlinkClicked}) => {
         setfilteredData(data);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
   const [newBookData, setnewBookData] = useState({
@@ -90,19 +90,32 @@ const Books = ({setlinkClicked}) => {
           return res.json();
         } else {
           seterrorModal({statedisplay: true, message: "error"});
+          setTimeout(() => {
+            seterrorModal({statedisplay: false, message: ""});
+            setnewBookData({
+              transactionId: "",
+              dateCreated: "",
+              returnDate: "",
+              status: "",
+              staffname: "",
+              fname: "",
+              lastname: "",
+              isbn: "",
+              libraryCardNumber: "",
+            });
+          }, 3000);
         }
       })
       .then(data => {
         setfilteredData(prevdata => {
           return [...prevdata, data.data];
         });
-        console.log(data);
+        // console.log(data);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
-  console.log(queryData);
   return (
     <main className="books">
       <TopNav setlinkClicked={setlinkClicked} />
@@ -228,28 +241,31 @@ const Books = ({setlinkClicked}) => {
                 onChange={handleInputBook}
               />
             </label>
-            <label>
-              <span>Shelf location</span>
-              <input
-                type="text"
-                placeholder="Shelf Location"
-                required
-                name="shelfLocation"
-                value={newBookData.shelfLocation}
-                onChange={handleInputBook}
-              />{" "}
-            </label>{" "}
-            <label>
-              <span>Copies</span>
-              <input
-                type="number"
-                placeholder="Copies"
-                required
-                name="copiesTotal"
-                value={newBookData.copiesTotal}
-                onChange={handleInputBook}
-              />{" "}
-            </label>
+            <div className="wrapper-label">
+              {" "}
+              <label>
+                <span>Shelf location</span>
+                <input
+                  type="text"
+                  placeholder="Shelf Location"
+                  required
+                  name="shelfLocation"
+                  value={newBookData.shelfLocation}
+                  onChange={handleInputBook}
+                />
+              </label>
+              <label>
+                <span>Copies</span>
+                <input
+                  type="number"
+                  placeholder="Copies"
+                  required
+                  name="copiesTotal"
+                  value={newBookData.copiesTotal}
+                  onChange={handleInputBook}
+                />{" "}
+              </label>
+            </div>
             <button type="submit" className="form-btn">
               <i className="material-symbols-outlined">add</i>
               <span>Add</span>

@@ -5,8 +5,7 @@ const Employees = ({setlinkClicked}) => {
     <main className="employees">
       <TopNav setlinkClicked={setlinkClicked} />
       <Breadcrumbs />
-      
-    </main>
+          </main>
   );
 };
 

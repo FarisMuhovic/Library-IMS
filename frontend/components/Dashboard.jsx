@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 
 const Dashboard = ({setlinkClicked}) => {
   const [queryData, setqueryData] = useState();
-  console.log(queryData);
   useEffect(() => {
     fetch("http://localhost:5000/api/dashboard", {
       method: "GET",
@@ -23,7 +22,7 @@ const Dashboard = ({setlinkClicked}) => {
         setqueryData(data);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
   return (

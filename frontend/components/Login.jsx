@@ -47,12 +47,12 @@ const Login = () => {
           setlabelStatus("success");
           navigate("/");
         } else {
-          console.log("wrong info");
+          // console.log("wrong info");
           setlabelStatus("error");
         }
       })
       .catch(err => {
-        console.log(err); // error
+        // console.log(err); // error
       });
   }
   return (

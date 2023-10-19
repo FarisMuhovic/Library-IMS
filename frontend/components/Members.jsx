@@ -37,7 +37,7 @@ const Members = ({setlinkClicked}) => {
         setfilteredData(data);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
   const [newMemberData, setnewMemberData] = useState({
@@ -93,6 +93,20 @@ const Members = ({setlinkClicked}) => {
           return res.json();
         } else {
           seterrorModal({statedisplay: true, message: "error"});
+          setTimeout(() => {
+            seterrorModal({statedisplay: false, message: ""});
+            setnewMemberData({
+              transactionId: "",
+              dateCreated: "",
+              returnDate: "",
+              status: "",
+              staffname: "",
+              fname: "",
+              lastname: "",
+              isbn: "",
+              libraryCardNumber: "",
+            });
+          }, 3000);
         }
       })
       .then(data => {
@@ -101,10 +115,9 @@ const Members = ({setlinkClicked}) => {
         });
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
-  console.log(queryData);
   return (
     <main className="members">
       <TopNav setlinkClicked={setlinkClicked} />

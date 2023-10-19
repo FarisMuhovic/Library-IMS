@@ -31,11 +31,10 @@ function App() {
         }
       })
       .then(data => {
-        console.log(data.message);
-        // data.message && setsessionExists("dash");
+        // console.log(data.message);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }, [linkClicked, sessionExists, navigate]);
   useEffect(() => {

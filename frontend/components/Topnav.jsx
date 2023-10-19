@@ -3,7 +3,7 @@ import "./topnav.css";
 const TopNav = ({setlinkClicked}) => {
   const location = useLocation();
   let path = location.pathname;
-  console.log(path);
+  // console.log(path);
   if (path == "/") {
     path = "Dashboard";
   } else {

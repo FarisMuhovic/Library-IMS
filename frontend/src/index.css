@@ -243,13 +243,16 @@ body,
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem;
   border-radius: 1rem;
   min-height: 500px;
   width: 100%;
   max-width: 400px;
   background-color: var(--bg-primary);
-  padding: 2rem;
+  padding: 1rem 2rem;
+}
+.wrapper-label {
+  display: flex;
+  gap: 0.25rem;
 }
 .modal > form p {
   align-self: flex-start;
@@ -283,6 +286,7 @@ body,
   padding: 0.5rem;
   border-radius: 0.5rem;
   margin-top: auto;
+  margin-top: 0.5rem;
 }
 .form-text {
   display: flex;
@@ -326,6 +330,15 @@ body,
 }
 .error-modal.err {
   background-color: var(--error);
+}
+.warning {
+  color: var(--warning);
+}
+.completed {
+  color: var(--success);
+}
+.late {
+  color: var(--error);
 }
 /*  Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {

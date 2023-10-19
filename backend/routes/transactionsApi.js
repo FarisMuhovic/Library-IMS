@@ -7,7 +7,7 @@ module.exports = (connection, mysql) => {
     connection.query(
       "select t.transactionId, t.dateCreated, t.returnDate, t.status, s.fname as staffname, b.title, m.fname,m.lastname from transaction t JOIN book b ON b.isbn = t.isbn JOIN staff s ON s.id = t.staffID JOIN member m on m.libraryCardNumber = t.libraryCardNumber limit 100;",
       function (err, results, field) {
-        console.log(results);
+        // console.log(results);
         if (results) {
           res.status(200).json(results);
         } else {
@@ -34,7 +34,7 @@ module.exports = (connection, mysql) => {
       "SELECT id FROM staff WHERE fname = ?",
       [staffname],
       function (err, results, fields) {
-        console.log(err);
+  
         if (!err && results.length > 0) {
           connection.query(
             "INSERT INTO transaction (transactionId, dateCreated, returnDate, isbn, status, libraryCardNumber,  staffID) VALUES (?,?,?,?,?,?,?)",
@@ -48,7 +48,7 @@ module.exports = (connection, mysql) => {
               results[0].id,
             ],
             function (err, results, field) {
-              console.log(err);
+          
               if (!err) {
                 connection.query(
                   "UPDATE book_copies SET copiesTotal = copiesTotal - 1 WHERE isbn = ?",

@@ -6,7 +6,7 @@ module.exports = (connection, mysql) => {
     connection.query(
       "select * from book b JOIN book_copies cp ON b.isbn = cp.isbn limit 100;",
       function (err, results, field) {
-        console.log(results);
+        // console.log(results);
         if (results) {
           res.status(200).json(results);
         } else {
@@ -48,17 +48,6 @@ module.exports = (connection, mysql) => {
         }
       }
     );
-    // connection.query(
-    //   "INSERT INTO member (libraryCardNumber, fname, lastname, age, dateRegistered, phoneNumber) VALUES (?, ?, ?, ? ,?, ?)",
-    //   [libraryCardNumber, fname, lastname, age, formattedDate, phoneNumber],
-    //   function (err, results, field) {
-    //     if (!err) {
-    //       res.status(200).json({message: "Member inserted", data: req.body});
-    //     } else {
-    //       res.status(400).json({message: "Insertion failed"});
-    //     }
-    //   }
-    // );
   });
   return router;
 };

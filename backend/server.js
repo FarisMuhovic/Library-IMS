@@ -70,3 +70,5 @@ const transactionsRoute = require("./routes/transactionsApi")(
   mysql
 );
 app.use("/api", transactionsRoute);
+const employeesRoute = require("./routes/employeesAPI")(connection, mysql);
+app.use("/api", employeesRoute);

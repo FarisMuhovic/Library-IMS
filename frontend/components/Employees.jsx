@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 const Employees = ({setlinkClicked}) => {
   const [queryData, setqueryData] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/api/employees", {
+    fetch("https://libraryims-api.onrender.com/api/employees", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const Employees = ({setlinkClicked}) => {
   };
   function submitEmployee(e) {
     e.preventDefault();
-    fetch("http://localhost:5000/api/addemployee", {
+    fetch("https://libraryims-api.onrender.com/api/addemployee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -7,7 +7,7 @@ const Sidebar = ({setlinkClicked, setsessionExists}) => {
     setlinkClicked(prevval => !prevval);
   };
   const logout = () => {
-    fetch("http://localhost:5000/auth/logout", {
+    fetch("https://libraryims-api.onrender.com/auth/logout", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

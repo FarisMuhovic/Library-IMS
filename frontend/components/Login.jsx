@@ -33,7 +33,7 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     setloaderBtn(true);
-    await fetch("http://localhost:5000/auth/login", {
+    await fetch("https://libraryims-api.onrender.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

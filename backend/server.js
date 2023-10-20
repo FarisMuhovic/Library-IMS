@@ -21,7 +21,7 @@ const redisClient = new Redis();
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://libraryims.onrender.com/"],
     credentials: true,
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
   })

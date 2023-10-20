@@ -15,7 +15,7 @@ function App() {
   const [linkClicked, setlinkClicked] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/auth/loggedin", {
+    fetch("https://libraryims-api.onrender.com/auth/loggedin", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

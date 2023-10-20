@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 const Dashboard = ({setlinkClicked}) => {
   const [queryData, setqueryData] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/api/dashboard", {
+    fetch("https://libraryims-api.onrender.com/api/dashboard", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

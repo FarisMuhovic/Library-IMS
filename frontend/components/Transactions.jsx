@@ -24,7 +24,7 @@ const Transactions = ({setlinkClicked}) => {
     }
   };
   useEffect(() => {
-    fetch("http://localhost:5000/api/transactions", {
+    fetch("https://libraryims-api.onrender.com/api/transactions", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const Transactions = ({setlinkClicked}) => {
   };
   function submitTransaction(e) {
     e.preventDefault();
-    fetch("http://localhost:5000/api/addtransaction", {
+    fetch("https://libraryims-api.onrender.com/api/addtransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

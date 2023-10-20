@@ -19,7 +19,7 @@ const Members = ({setlinkClicked}) => {
     }
   };
   useEffect(() => {
-    fetch("http://localhost:5000/api/members", {
+    fetch("https://libraryims-api.onrender.com/api/members", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Members = ({setlinkClicked}) => {
   };
   function submitMember(e) {
     e.preventDefault();
-    fetch("http://localhost:5000/api/addmember", {
+    fetch("https://libraryims-api.onrender.com/api/addmember", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

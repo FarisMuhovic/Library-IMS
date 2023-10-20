@@ -18,7 +18,7 @@ const Books = ({setlinkClicked}) => {
     }
   };
   useEffect(() => {
-    fetch("http://localhost:5000/api/books", {
+    fetch("https://libraryims-api.onrender.com/api/books", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Books = ({setlinkClicked}) => {
   };
   function submitBook(e) {
     e.preventDefault();
-    fetch("http://localhost:5000/api/addbook", {
+    fetch("https://libraryims-api.onrender.com/api/addbook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

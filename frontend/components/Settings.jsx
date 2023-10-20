@@ -5,7 +5,7 @@ const Settings = () => {
     <main className="settings">
       <TopNav />
       <Breadcrumbs />
-      settings
+      <div className="options"></div>
     </main>
   );
 };

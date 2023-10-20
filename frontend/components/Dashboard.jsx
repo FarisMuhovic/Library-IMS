@@ -19,7 +19,7 @@ const Dashboard = ({setlinkClicked}) => {
       })
       .then(data => {
         // console.log(data);
-        setqueryData(data);
+        data && setqueryData(data);
       })
       .catch(err => {
         // console.log(err);

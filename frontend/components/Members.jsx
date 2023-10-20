@@ -110,9 +110,10 @@ const Members = ({setlinkClicked}) => {
         }
       })
       .then(data => {
-        setqueryData(prevdata => {
-          return [...prevdata, data.data];
-        });
+        data &&
+          setqueryData(prevdata => {
+            return [...prevdata, data.data];
+          });
       })
       .catch(err => {
         // console.log(err);

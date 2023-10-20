@@ -107,7 +107,7 @@ const Books = ({setlinkClicked}) => {
         }
       })
       .then(data => {
-        setfilteredData(prevdata => {
+        data && setfilteredData(prevdata => {
           return [...prevdata, data.data];
         });
         // console.log(data);

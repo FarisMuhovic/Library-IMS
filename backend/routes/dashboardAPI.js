@@ -10,12 +10,12 @@ module.exports = (connection, mysql) => {
     WHERE DATE(dateRegistered) >= DATE(NOW() - INTERVAL 30 DAY);
     SELECT COUNT(*) as member_count FROM member;
     select COUNT(*) as book_count from book;
-    select b.isbn,b.title, c.copiesTotal,b.author,b.genre from book b JOIN book_copies c ON b.isbn = c.isbn WHERE c.copiesTotal < 15 LIMIT 5;
+    select b.isbn,b.title, c.copiesTotal,b.author,b.genre from book b JOIN book_copies c ON b.isbn = c.isbn WHERE c.copiesTotal < 5 LIMIT 5;
     select COUNT(*) as transaction_count from transaction;
     select COUNT(*) as transactionRented_count from transaction WHERE status = "Rented";
     select t.transactionId, t.dateCreated, t.returnDate, b.title,t.status from transaction t JOIN book b ON b.isbn = t.isbn 
     WHERE t.status = "Rented" ORDER BY t.dateCreated DESC LIMIT 8;
-    select Count(*) as lowbook_count from book b JOIN book_copies c ON b.isbn = c.isbn WHERE c.copiesTotal < 15;
+    select Count(*) as lowbook_count from book b JOIN book_copies c ON b.isbn = c.isbn WHERE c.copiesTotal < 5;
 `,
       function (err, results, field) {
         console.log(results);

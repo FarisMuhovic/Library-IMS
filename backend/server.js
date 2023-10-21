@@ -40,7 +40,7 @@ const connection = mysql.createConnection({
 // Sessions
 app.use(
   session({
-    store: new RedisStore({client: redisClient}),
+    // store: new RedisStore({client: redisClient}),
     secret: process.env.SESSIONSECRET,
     resave: false,
     saveUninitialized: false,

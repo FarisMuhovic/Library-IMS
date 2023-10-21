@@ -21,7 +21,7 @@ app.use(express.json());
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["https://libraryims.onrender.com/"],
+    origin: ["https://libraryims.onrender.com"],
     credentials: true,
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
   })

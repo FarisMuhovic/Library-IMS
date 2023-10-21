@@ -75,6 +75,7 @@ const Transactions = ({setlinkClicked}) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       credentials: "include",
       body: JSON.stringify({

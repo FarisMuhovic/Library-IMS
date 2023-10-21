@@ -67,6 +67,7 @@ const Books = ({setlinkClicked}) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       credentials: "include",
       body: JSON.stringify(newBookData),
@@ -107,9 +108,10 @@ const Books = ({setlinkClicked}) => {
         }
       })
       .then(data => {
-        data && setfilteredData(prevdata => {
-          return [...prevdata, data.data];
-        });
+        data &&
+          setfilteredData(prevdata => {
+            return [...prevdata, data.data];
+          });
         // console.log(data);
       })
       .catch(err => {

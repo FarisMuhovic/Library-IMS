@@ -13,9 +13,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 // REDIS
-const Redis = require("ioredis");
-const RedisStore = require("connect-redis").default;
-const redisClient = new Redis();
+// const Redis = require("ioredis");
+// const RedisStore = require("connect-redis").default;
+// const redisClient = new Redis();
 
 // CORS policy
 const cors = require("cors");
